@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>EduPortal — Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="loginstyle.css">
+</head>
+<body>
+
+<div class="phone-shell">
+  <!-- Physical buttons -->
+  <div class="side-btn-r"></div>
+  <div class="side-btn-l" style="top:148px;height:36px"></div>
+  <div class="side-btn-l" style="top:198px;height:60px"></div>
+  <div class="side-btn-l" style="top:272px;height:60px"></div>
+
+  <!-- Notch -->
+  <div class="notch">
+    <div class="notch-mic"></div>
+    <div class="notch-cam"></div>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="status-bar" id="statusBar" style="background: var(--teacher-gradient); background: linear-gradient(145deg,#1a1a2e,#2d2d5e);">
+    <span class="status-time">9:41</span>
+    <div class="status-icons">
+      <!-- Signal -->
+      <svg viewBox="0 0 24 24"><rect x="1" y="15" width="4" height="6" rx="1"/><rect x="7" y="11" width="4" height="10" rx="1"/><rect x="13" y="7" width="4" height="14" rx="1"/><rect x="19" y="3" width="4" height="18" rx="1" opacity=".3"/></svg>
+      <!-- WiFi -->
+      <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="12" cy="20" r="1" fill="rgba(255,255,255,.85)"/></svg>
+      <!-- Battery -->
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="18" height="11" rx="2" ry="2" stroke="rgba(255,255,255,.85)" stroke-width="1.5" fill="none"/><line x1="22" y1="11" x2="22" y2="14" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round"/><rect x="4" y="9" width="12" height="7" rx="1" fill="rgba(255,255,255,.85)"/></svg>
+    </div>
+  </div>
+
+  <!-- Screen -->
+  <div class="screen">
+
+    <!-- Hero -->
+    <div class="hero teacher" id="hero">
+      <div class="logo-row">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+        </div>
+        <span class="logo-name">EduPortal</span>
+      </div>
+      <div class="hero-badge" id="heroBadge">
+        <div class="hero-badge-dot"></div>
+        <span id="badgeLabel">Área Docente</span>
+      </div>
+      <div class="hero-title" id="heroTitle">Bem-vindo,<br/><em>Professor</em></div>
+      <div class="hero-sub" id="heroSub">Gerencie suas turmas e atividades com facilidade.</div>
+    </div>
+
+    <!-- Tab Pill -->
+    <div class="tab-pill-wrap">
+      <div class="tab-pill">
+        <button class="tab-btn active" data-role="teacher" onclick="switchRole('teacher')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          Professor
+        </button>
+        <button class="tab-btn" data-role="student" onclick="switchRole('student')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+          Aluno
+        </button>
+      </div>
+    </div>
+
+    <!-- Form Scroll Area -->
+    <div class="form-scroll">
+
+      <!-- Teacher Form -->
+      <div class="form-panel active" data-role="teacher">
+        <div class="form-heading">Entrar</div>
+        <div class="form-hint">Use seu e-mail institucional</div>
+
+        <div class="field">
+          <label>E-mail</label>
+          <div class="input-wrap">
+            <svg class="ico" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <input type="email" placeholder="professor@escola.edu.br"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Senha</label>
+          <div class="input-wrap">
+            <svg class="ico" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <input type="password" id="pwT" placeholder="••••••••"/>
+            <button class="toggle-pw" onclick="togglePw('pwT',this)" type="button">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="row-forgot"><a href="#">Esqueceu a senha?</a></div>
+
+        <label class="remember">
+          <input type="checkbox" id="remT"/>
+          <div class="check-box" onclick="document.getElementById('remT').click()">
+            <svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="2,6 5,9 10,3"/></svg>
+          </div>
+          <span onclick="document.getElementById('remT').click()">Manter conectado</span>
+        </label>
+
+      <a href="professor.html" class="btn-login">
+          Acessar Portal
+          <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+
+        <div class="divider"><span>ou</span></div>
+        <div class="register-link">Primeiro acesso? <a href="#">Criar conta</a></div>
+      </div>
+
+      <!-- Student Form -->
+      <div class="form-panel" data-role="student">
+        <div class="form-heading">Entrar</div>
+        <div class="form-hint">Use sua matrícula ou e-mail</div>
+
+        <div class="field">
+          <label>Matrícula / E-mail</label>
+          <div class="input-wrap">
+            <svg class="ico" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+            <input type="text" placeholder="2024001 ou aluno@escola.edu.br"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Senha</label>
+          <div class="input-wrap">
+            <svg class="ico" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <input type="password" id="pwS" placeholder="••••••••"/>
+            <button class="toggle-pw" onclick="togglePw('pwS',this)" type="button">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="row-forgot"><a href="#">Esqueceu a senha?</a></div>
+
+        <label class="remember">
+          <input type="checkbox" id="remS"/>
+          <div class="check-box" onclick="document.getElementById('remS').click()">
+            <svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="2,6 5,9 10,3"/></svg>
+          </div>
+          <span onclick="document.getElementById('remS').click()">Manter conectado</span>
+        </label>
+
+        <a href="aluno.html" class="btn-login">
+          Acessar Portal
+          <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+
+        <div class="divider"><span>ou</span></div>
+        <div class="register-link">Primeiro acesso? <a href="#">Criar conta</a></div>
+      </div>
+
+    </div><!-- /form-scroll -->
+
+    <!-- Home indicator -->
+    <div class="home-indicator"><div class="home-bar"></div></div>
+
+  </div><!-- /screen -->
+</div><!-- /phone-shell -->
+
+<script>
+  const heroData = {
+    teacher: {
+      badgeLabel: 'Área Docente',
+      title: 'Bem-vindo,<br/><em>Professor</em>',
+      sub: 'Gerencie suas turmas e atividades com facilidade.',
+      bgClass: 'teacher',
+      statusBg: 'linear-gradient(145deg,#1a1a2e,#2d2d5e)'
+    },
+    student: {
+      badgeLabel: 'Área do Aluno',
+      title: 'Olá,<br/><em>Estudante</em>',
+      sub: 'Veja suas aulas, notas e atividades em um só lugar.',
+      bgClass: 'student',
+      statusBg: 'linear-gradient(145deg,#0f3460,#16213e)'
+    }
+  };
+
+  function switchRole(role) {
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.tab-btn[data-role="${role}"]`).classList.add('active');
+
+    // Forms
+    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`.form-panel[data-role="${role}"]`).classList.add('active');
+
+    // Hero
+    const d = heroData[role];
+    const hero = document.getElementById('hero');
+    hero.className = 'hero ' + d.bgClass;
+    document.getElementById('badgeLabel').textContent = d.badgeLabel;
+    document.getElementById('heroTitle').innerHTML = d.title;
+    document.getElementById('heroSub').textContent = d.sub;
+    document.getElementById('statusBar').style.background = d.statusBg;
+
+    // Scroll to top
+    document.querySelector('.form-scroll').scrollTop = 0;
+  }
+
+  function togglePw(id, btn) {
+    const input = document.getElementById(id);
+    const isHidden = input.type === 'password';
+    input.type = isHidden ? 'text' : 'password';
+    btn.querySelector('svg').style.opacity = isHidden ? '0.4' : '1';
+  }
+
+  // Live clock
+  function updateClock() {
+    const now = new Date();
+    const h = now.getHours().toString().padStart(2,'0');
+    const m = now.getMinutes().toString().padStart(2,'0');
+    document.querySelector('.status-time').textContent = h + ':' + m;
+  }
+  updateClock();
+  setInterval(updateClock, 10000);
+</script>
+</body>
+</html>
