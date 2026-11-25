@@ -1,0 +1,81 @@
+/* ===================== TOKENS ===================== */
+:root {
+  /* ---- Marca ---- */
+  --color-brand:        #0B3D2E;
+  --color-brand-light:  #14785B;
+  --color-brand-dark:   #062018;
+
+  /* ---- Acento ---- */
+  --color-accent:       #E8943B;
+  --color-accent-light:  #F5B067;
+  --color-accent-dark:   #C97A2A;
+
+  /* ---- Neutros (fundo quente) ---- */
+  --color-bg:           #FAF8F5;
+  --color-bg-alt:       #F2EDE7;
+  --color-surface:     #FFFFFF;
+  --color-text:        #1A1A1A;
+  --color-text-muted:  #6B6B6B;
+  --color-border:      #E5E0DA;
+
+  /* ---- Tipografia ---- */
+  --font-display:  'Sora', sans-serif;
+  --font-body:     'DM Sans', sans-serif;
+  --font-mono:     'JetBrains Mono', monospace;
+
+  /* ---- Escala tipográfica ---- */
+  --fs-hero:     clamp(2rem, 5vw, 3.5rem);
+  --fs-h2:       clamp(1.5rem, 3vw, 2.25rem);
+  --fs-h3:       1.25rem;
+  --fs-body:     1rem;
+  --fs-sm:       0.875rem;
+  --fs-xs:       0.75rem;
+
+  /* ---- Espaçamento ---- */
+  --space-xs:   0.5rem;
+  --space-sm:   0.75rem;
+  --space-md:   1rem;
+  --space-lg:   1.5rem;
+  --space-xl:   2rem;
+  --space-2xl:  3rem;
+  --space-3xl:  4rem;
+  --space-4xl:  6rem;
+
+  /* ---- Raio ---- */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-pill: 999px;
+
+  /* ---- Sombra ---- */
+  --shadow-sm:  0 1px 2px rgba(11,61,46,0.06);
+  --shadow-md:  0 4px 12px rgba(11,61,46,0.08);
+  --shadow-lg:  0 12px 32px rgba(11,61,46,0.12);
+
+  /* ---- Transições ---- */
+  --ease:       cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 250ms var(--ease);
+  --transition-slow: 500ms var(--ease);
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --header-h: 68px;
+
+  /* ---- z-index ---- */
+  --z-header:  100;
+  --z-overlay: 200;
+  --z-float:   300;
+}
+
+/* ---- Tema escuro ---- */
+[data-theme="dark"] {
+  --color-bg:        #0D1A16;
+  --color-bg-alt:    #152622;
+  --color-surface:   #1A2D28;
+  --color-text:     #E8E4E0;
+  --color-text-muted: #9BA8A3;
+  --color-border:   #2A3D37;
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.25);
+  --shadow-lg:  0 12px 32px rgba(0,0,0,0.35);
+}

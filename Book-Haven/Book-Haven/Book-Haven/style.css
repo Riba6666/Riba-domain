@@ -1,0 +1,83 @@
+/* Verde #1F4D3A · Bordô #7B2D26 · Dourado #C9A227 · Pergaminho #F5EEDC · Café #4A3728 */
+
+body {
+  background: #F5EEDC;
+  color: #4A3728;
+  font: 18px 'Source Sans 3', Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  text-align: center;
+  border-bottom: 3px solid #1F4D3A;
+  padding: 20px;
+}
+
+h1, h2 {
+  font-family: 'Lora', Georgia, serif;
+  color: #1F4D3A;
+  margin: 0 0 10px;
+}
+
+.logo { display: block; width: 320px; max-width: 100%; margin: 0 auto; }
+
+main {
+  max-width: 800px;
+  margin: 25px auto;
+  padding: 0 15px;
+}
+
+.caixa {
+  background: #fff;
+  border: 2px solid #1F4D3A;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+input:not([type="checkbox"]), select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 8px 0;
+  font: inherit;
+}
+
+button {
+  padding: 10px 16px;
+  margin: 10px 8px 0 0;
+  border: none;
+  border-radius: 5px;
+  font: bold 16px 'Source Sans 3', Arial, sans-serif;
+  cursor: pointer;
+}
+
+.btn-verde { background: #1F4D3A; color: #fff; }
+.btn-bordo { background: #7B2D26; color: #fff; }
+.btn-dourado { background: #C9A227; color: #4A3728; }
+
+.abas { display: flex; gap: 10px; margin-bottom: 25px; }
+.abas button { flex: 1; margin: 0; background: #fff; color: #1F4D3A; border: 2px solid #1F4D3A; }
+.abas button.ativa { background: #1F4D3A; color: #fff; }
+
+.perdidos {
+  border-left: 8px solid #7B2D26;
+  background: #fff;
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.cartao {
+  background: #F5EEDC;
+  border-left: 6px solid #1F4D3A;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.cartao.rara { border-left-color: #C9A227; }
+
+.status { font-weight: bold; }
+.status.Disponível { color: #1F4D3A; }
+.status.Perdido { color: #7B2D26; }

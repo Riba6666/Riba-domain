@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LM Veículos — Locadora de veículos em São Paulo. Frota revisada, preços justos e atendimento direto. Reserve em minutos." />
+  <title>LM Veículos — Locadora em Sergipe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#hero" class="logo" aria-label="LM Veículos">
+        <svg class="logo__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/>
+          <circle cx="6.5" cy="16.5" r="2.5"/>
+          <circle cx="16.5" cy="16.5" r="2.5"/>
+        </svg>
+        <span class="logo__text">LM<strong>Veículos</strong></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navegação principal">
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navList">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav__list" id="navList">
+          <li><a href="#hero"        class="nav__link">Início</a></li>
+          <li><a href="#sobre"       class="nav__link">Sobre</a></li>
+          <li><a href="#servicos"    class="nav__link">Serviços</a></li>
+          <li><a href="#frota"       class="nav__link">Frota</a></li>
+          <li><a href="#depoimentos" class="nav__link">Avaliações</a></li>
+          <li><a href="#contato"     class="nav__link nav__link--cta">Reservar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="container hero__inner">
+        <div class="hero__text reveal">
+          <p class="hero__eyebrow">Locadora em Sergipe · Desde 2009</p>
+          <h1 class="hero__title">Alugue um carro sem burocracia.</h1>
+          <p class="hero__desc">
+            Frota própria com mais de 50 veículos revisados a cada 30 dias.
+            Reserve online em menos de 5 minutos e retire onde for melhor para você.
+          </p>
+          <div class="hero__actions">
+            <a href="#frota" class="btn btn--primary btn--lg">Ver veículos disponíveis</a>
+            <a href="#contato" class="btn btn--outline btn--lg">Falar com a equipe</a>
+          </div>
+        </div>
+        <div class="hero__visual reveal" aria-hidden="true">
+          <div class="hero__visual-card">
+            <div class="hero__visual-img"></div>
+            <div class="hero__visual-info">
+              <span class="hero__visual-tag">Disponível agora</span>
+              <span class="hero__visual-price">R$ 89/dia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container hero__stats reveal">
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="50">0</span>
+          <span class="hero__stat-label">Veículos na frota</span>
+        </div>
+        <span class="hero__stat-divider"></span>
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="15">0</span>
+          <span class="hero__stat-label">Anos de operação</span>
+        </div>
+        <span class="hero__stat-divider"></span>
+        <div class="hero__stat">
+          <span class="hero__stat-num">4.9<small>★</small></span>
+          <span class="hero__stat-label">1.247 avaliações</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="section sobre" id="sobre">
+      <div class="container sobre__grid">
+        <div class="sobre__img reveal" aria-hidden="true"></div>
+        <div class="sobre__text reveal">
+          <p class="eyebrow">Quem somos</p>
+          <h2 class="section__title">15 anos alugando carros em Sergipe</h2>
+          <p class="section__text">
+            Começamos em 2009 com três carros numa garagem. Hoje são mais de 50
+            veículos próprios — todos revisados a cada 30 dias, com seguro completo
+            e assistência 24h incluída no preço.
+          </p>
+          <blockquote class="sobre__quote">
+            A gente não cobra taxa escondida. O preço que você vê no site é o
+            preço que você paga na hora de retirar o carro.
+            <cite>— Léo Fontes e Matheus Barros, fundadores</cite>
+          </blockquote>
+          <div class="sobre__metrics">
+            <div class="sobre__metric">
+              <span class="sobre__metric-num">5.000+</span>
+              <span class="sobre__metric-label">Clientes atendidos</span>
+            </div>
+            <div class="sobre__metric">
+              <span class="sobre__metric-num">30 dias</span>
+              <span class="sobre__metric-label">Entre revisões</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="section section--alt servicos" id="servicos">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Serviços</p>
+          <h2 class="section__title">O que oferecemos</h2>
+        </div>
+        <div class="servicos__grid reveal">
+          <article class="servico servico--lg">
+            <div class="servico__img servico__img--1"></div>
+            <div class="servico__body">
+              <h3 class="servico__title">Aluguel por diária</h3>
+              <p class="servico__text">Flexível para um dia ou uma semana. Sem franquia mínima, sem multa de devolução antecipada.</p>
+            </div>
+          </article>
+          <article class="servico servico--lg">
+            <div class="servico__img servico__img--2"></div>
+            <div class="servico__body">
+              <h3 class="servico__title">Locação mensal</h3>
+              <p class="servico__text">Planos a partir de 30 dias com até 40% de desconto. Ideal para quem precisa de um carro fixo.</p>
+            </div>
+          </article>
+          <article class="servico">
+            <div class="servico__body servico__body--sm">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+              <h3 class="servico__title">Vans e utilitários</h3>
+              <p class="servico__text">Transporte de passageiros ou carga com veículos de 9 a 15 lugares.</p>
+            </div>
+          </article>
+          <article class="servico">
+            <div class="servico__body servico__body--sm">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+              <h3 class="servico__title">Entrega e retirada</h3>
+              <p class="servico__text">Levamos e buscamos o veículo no aeroporto, hotel ou endereço que você escolher.</p>
+            </div>
+          </article>
+          <article class="servico">
+            <div class="servico__body servico__body--sm">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <h3 class="servico__title">Assistência 24h</h3>
+              <p class="servico__text">Guincho, troca de pneu e suporte técnico em qualquer horário, incluso no plano.</p>
+            </div>
+          </article>
+          <article class="servico">
+            <div class="servico__body servico__body--sm">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9M14 17H5M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/><path d="M7 7v10M17 17V7h3"/></svg>
+              <h3 class="servico__title">Com motorista</h3>
+              <p class="servico__text">Motoristas credenciados para quem prefere não dirigir. Disponível sob consulta.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="section como-funciona" id="como-funciona">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Simples assim</p>
+          <h2 class="section__title">Como funciona</h2>
+        </div>
+        <div class="passos reveal">
+          <div class="passo">
+            <span class="passo__num">01</span>
+            <h3 class="passo__title">Escolha o veículo</h3>
+            <p class="passo__text">Selecione pela categoria, preço ou especificação. Todos com foto real e specs detalhadas.</p>
+          </div>
+          <div class="passo">
+            <span class="passo__num">02</span>
+            <h3 class="passo__title">Faça a reserva</h3>
+            <p class="passo__text">Preencha datas e dados em menos de 5 minutos. Confirmação imediata por WhatsApp.</p>
+          </div>
+          <div class="passo">
+            <span class="passo__num">03</span>
+            <h3 class="passo__title">Retire e dirija</h3>
+            <p class="passo__text">Vá até a loja ou peça entrega. O carro vem revisado, abastecido e segurado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FROTA -->
+    <section class="section section--alt frota" id="frota">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Frota disponível</p>
+          <h2 class="section__title">Escolha seu veículo</h2>
+        </div>
+        <div class="frota__filtros reveal" id="frotaFiltros">
+          <button class="chip chip--active" data-filter="todos">Todos</button>
+          <button class="chip" data-filter="economico">Econômico</button>
+          <button class="chip" data-filter="sedan">Sedan</button>
+          <button class="chip" data-filter="suv">SUV</button>
+          <button class="chip" data-filter="utilitario">Utilitário</button>
+        </div>
+        <div class="frota__grid reveal" id="frotaGrid">
+
+          <article class="card veiculo" data-categoria="economico">
+            <div class="veiculo__img veiculo__img--1"><span class="veiculo__tag">Econômico</span></div>
+            <div class="veiculo__body">
+              <h3 class="veiculo__name">Fiat Mobi</h3>
+              <div class="veiculo__specs">
+                <span>4 pessoas</span><span>Flex</span><span>Ar-condicionado</span>
+              </div>
+              <div class="veiculo__footer">
+                <span class="veiculo__price">R$ 89<span>/dia</span></span>
+                <button class="btn btn--primary btn--sm js-reservar" data-veiculo="Fiat Mobi">Reservar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card veiculo" data-categoria="economico">
+            <div class="veiculo__img veiculo__img--2"><span class="veiculo__tag">Econômico</span></div>
+            <div class="veiculo__body">
+              <h3 class="veiculo__name">Renault Kwid</h3>
+              <div class="veiculo__specs">
+                <span>5 pessoas</span><span>Flex</span><span>Ar-condicionado</span>
+              </div>
+              <div class="veiculo__footer">
+                <span class="veiculo__price">R$ 99<span>/dia</span></span>
+                <button class="btn btn--primary btn--sm js-reservar" data-veiculo="Renault Kwid">Reservar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card veiculo" data-categoria="sedan">
+            <div class="veiculo__img veiculo__img--3"><span class="veiculo__tag">Sedan</span></div>
+            <div class="veiculo__body">
+              <h3 class="veiculo__name">Honda Civic</h3>
+              <div class="veiculo__specs">
+                <span>5 pessoas</span><span>Gasolina</span><span>Automático</span>
+              </div>
+              <div class="veiculo__footer">
+                <span class="veiculo__price">R$ 189<span>/dia</span></span>
+                <button class="btn btn--primary btn--sm js-reservar" data-veiculo="Honda Civic">Reservar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card veiculo" data-categoria="sedan">
+            <div class="veiculo__img veiculo__img--4"><span class="veiculo__tag">Sedan</span></div>
+            <div class="veiculo__body">
+              <h3 class="veiculo__name">Toyota Corolla</h3>
+              <div class="veiculo__specs">
+                <span>5 pessoas</span><span>Híbrido</span><span>Automático</span>
+              </div>
+              <div class="veiculo__footer">
+                <span class="veiculo__price">R$ 199<span>/dia</span></span>
+                <button class="btn btn--primary btn--sm js-reservar" data-veiculo="Toyota Corolla">Reservar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card veiculo" data-categoria="suv">
+            <div class="veiculo__img veiculo__img--5"><span class="veiculo__tag">SUV</span></div>
+            <div class="veiculo__body">
+              <h3 class="veiculo__name">Jeep Compass</h3>
+              <div class="veiculo__specs">
+                <span>5 pessoas</span><span>Diesel</span><span>Automático</span>
+              </div>
+              <div class="veiculo__footer">
+                <span class="veiculo__price">R$ 249<span>/dia</span></span>
+                <button class="btn btn--primary btn--sm js-reservar" data-veiculo="Jeep Compass">Reservar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card veiculo" data-categoria="suv">
+            <div class="veiculo__img veiculo__img--6"><span class="veiculo__tag">SUV</span></div>
+            <div class="veiculo__body">
+              <h3 class="veiculo__name">Hyundai Creta</h3>
+              <div class="veiculo__specs">
+                <span>5 pessoas</span><span>Flex</span><span>Automático</span>
+              </div>
+              <div class="veiculo__footer">
+                <span class="veiculo__price">R$ 219<span>/dia</span></span>
+                <button class="btn btn--primary btn--sm js-reservar" data-veiculo="Hyundai Creta">Reservar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card veiculo" data-categoria="utilitario">
+            <div class="veiculo__img veiculo__img--7"><span class="veiculo__tag">Utilitário</span></div>
+            <div class="veiculo__body">
+              <h3 class="veiculo__name">Fiat Strada</h3>
+              <div class="veiculo__specs">
+                <span>5 pessoas</span><span>Flex</span><span>Carga 650kg</span>
+              </div>
+              <div class="veiculo__footer">
+                <span class="veiculo__price">R$ 129<span>/dia</span></span>
+                <button class="btn btn--primary btn--sm js-reservar" data-veiculo="Fiat Strada">Reservar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card veiculo" data-categoria="utilitario">
+            <div class="veiculo__img veiculo__img--8"><span class="veiculo__tag">Utilitário</span></div>
+            <div class="veiculo__body">
+              <h3 class="veiculo__name">Renault Master</h3>
+              <div class="veiculo__specs">
+                <span>3 pessoas</span><span>Diesel</span><span>Carga 1.200kg</span>
+              </div>
+              <div class="veiculo__footer">
+                <span class="veiculo__price">R$ 159<span>/dia</span></span>
+                <button class="btn btn--primary btn--sm js-reservar" data-veiculo="Renault Master">Reservar</button>
+              </div>
+            </div>
+          </article>
+        </div>
+        <p class="frota__empty" id="frotaEmpty" hidden>Nenhum veículo nesta categoria no momento.</p>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="section depoimentos" id="depoimentos">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Avaliações</p>
+          <h2 class="section__title">4.9 estrelas · 1.247 avaliações</h2>
+        </div>
+        <div class="depoimentos__grid reveal">
+          <article class="depoimento">
+            <p class="depoimento__text">Aluguei um SUV para uma viagem e o carro estava impecável. Entrega pontual e o preço foi exatamente o combinado. Sem surpresas.</p>
+            <div class="depoimento__author">
+              <span class="depoimento__avatar">CR</span>
+              <div><strong>Carlos Ribeiro</strong><span>Empresário · São Paulo</span></div>
+            </div>
+          </article>
+          <article class="depoimento">
+            <p class="depoimento__text">Já é a terceira vez que alugo com a LM. O atendimento é direto, sem enrolação, e o suporte 24h funcionou de verdade quando precisei.</p>
+            <div class="depoimento__author">
+              <span class="depoimento__avatar">MS</span>
+              <div><strong>Mariana Souza</strong><span>Arquiteta · Guarulhos</span></div>
+            </div>
+          </article>
+          <article class="depoimento">
+            <p class="depoimento__text">Precisava de uma van para 12 pessoas e resolveram tudo em menos de uma hora. Veículo novo e o motorista foi super profissional.</p>
+            <div class="depoimento__author">
+              <span class="depoimento__avatar">AP</span>
+              <div><strong>André Pereira</strong><span>Coordenador · Osasco</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section section--alt contato" id="contato">
+      <div class="container contato__grid">
+        <div class="contato__info reveal">
+          <p class="eyebrow">Reserve agora</p>
+          <h2 class="section__title">Fale com a equipe</h2>
+          <p class="section__text">Preencha o formulário ou chame no WhatsApp. Respondemos em até 30 minutos no horário comercial.</p>
+          <div class="contato__detalhes">
+            <a href="#" class="contato__item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              (79) 99661-3034
+            </a>
+            <a href="#" class="contato__item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Av. Tancredo Neves, 1.500 — Bela Vista, Sergipe
+            </a>
+            <span class="contato__item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Seg–Sex 7h–20h · Sáb 8h–18h
+            </span>
+          </div>
+        </div>
+        <form class="form contato__form reveal" id="formContato" novalidate>
+          <div class="form__group">
+            <input type="text" id="nome" class="form__input" placeholder=" " required />
+            <label for="nome" class="form__label">Nome completo</label>
+          </div>
+          <div class="form__group">
+            <input type="tel" id="telefone" class="form__input" placeholder=" " required />
+            <label for="telefone" class="form__label">Telefone / WhatsApp</label>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <input type="date" id="dataRetirada" class="form__input" placeholder=" " required />
+              <label for="dataRetirada" class="form__label">Retirada</label>
+            </div>
+            <div class="form__group">
+              <input type="date" id="dataDevolucao" class="form__input" placeholder=" " required />
+              <label for="dataDevolucao" class="form__label">Devolução</label>
+            </div>
+          </div>
+          <div class="form__group">
+            <select id="categoria" class="form__input form__input--select" required>
+              <option value="" disabled selected></option>
+              <option value="economico">Econômico</option>
+              <option value="sedan">Sedan</option>
+              <option value="suv">SUV</option>
+              <option value="utilitario">Utilitário</option>
+            </select>
+            <label for="categoria" class="form__label">Categoria desejada</label>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block btn--lg">Solicitar reserva</button>
+          <p class="form__feedback" id="formFeedback" hidden>Recebemos sua solicitação. Entraremos em contato em até 30 minutos.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="logo__text logo__text--light">LM<strong>Veículos</strong></span>
+        <p class="footer__copy">Locadora de veículos em Sergipe.<br>CNPJ 12.345.678/0001-90</p>
+      </div>
+      <div class="footer__links">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#frota">Frota</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <div class="footer__social">
+        <a href="#" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.002-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></a>
+        <a href="#" aria-label="E-mail"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2009–2026 LM Veículos Ltda. Todos os direitos reservados.</span>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="#" class="whatsapp-float" aria-label="Falar no WhatsApp" id="whatsappFloat">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.002-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

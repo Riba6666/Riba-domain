@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookHaven</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Source+Sans+3:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1><img src="logo.png" alt="BookHaven" class="logo"></h1>
+    <p>Seu refúgio entre páginas · Desde 1987</p>
+  </header>
+
+  <main>
+    <nav class="abas">
+      <button id="aba-leitor" class="ativa" onclick="mostrarAba('leitor')">Consulta de Livros</button>
+      <button id="aba-bibliotecario" onclick="mostrarAba('bibliotecario')">Área dos Bibliotecários</button>
+    </nav>
+
+    <section id="tela-leitor" class="caixa">
+      <h2>Consultar o Acervo</h2>
+      <input id="busca-leitor" oninput="desenhar()" placeholder="Título, autor ou estante (ex: 11 B)">
+      <p id="aviso-leitor" aria-live="polite"></p>
+      <div id="lista-leitor"></div>
+    </section>
+
+    <section id="tela-bibliotecario" hidden>
+      <p class="perdidos">Exemplares perdidos: <strong id="total-perdidos">0</strong></p>
+
+      <div class="caixa">
+        <h2>Cadastrar / Editar Livro</h2>
+        <input id="titulo" placeholder="Título">
+        <input id="autor" placeholder="Autor">
+        <input id="local" placeholder="Localização (ex: Estante 12, prateleira B)">
+        <select id="status">
+          <option>Disponível</option>
+          <option>Emprestado</option>
+          <option>Perdido</option>
+        </select>
+        <label><input type="checkbox" id="rara"> Obra rara</label>
+        <button id="btn-salvar" class="btn-verde" onclick="salvarLivro()">Salvar Livro</button>
+        <button id="btn-cancelar" class="btn-dourado" onclick="limparForm()" hidden>Cancelar</button>
+        <p id="aviso" aria-live="polite"></p>
+      </div>
+
+      <div class="caixa">
+        <h2>Gerenciar Acervo</h2>
+        <input id="busca-bibliotecario" oninput="desenhar()" placeholder="Título, autor ou estante (ex: 11 B)">
+        <div id="lista-bibliotecario"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

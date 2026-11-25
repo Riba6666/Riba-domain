@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>EduPortal — Aluno</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style-aluno.css">
+</head>
+<body>
+
+<div class="phone-shell">
+  <div class="side-btn-r"></div>
+  <div class="side-btn-l" style="top:148px;height:36px"></div>
+  <div class="side-btn-l" style="top:198px;height:60px"></div>
+  <div class="side-btn-l" style="top:272px;height:60px"></div>
+  <div class="notch"><div class="notch-mic"></div><div class="notch-cam"></div></div>
+
+  <div class="status-bar">
+    <span class="status-time">9:41</span>
+    <div class="status-icons">
+      <svg viewBox="0 0 24 24"><rect x="1" y="15" width="4" height="6" rx="1"/><rect x="7" y="11" width="4" height="10" rx="1"/><rect x="13" y="7" width="4" height="14" rx="1"/><rect x="19" y="3" width="4" height="18" rx="1" opacity=".3"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="12" cy="20" r="1" fill="rgba(255,255,255,.85)"/></svg>
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="18" height="11" rx="2" stroke="rgba(255,255,255,.85)" stroke-width="1.5" fill="none"/><line x1="22" y1="11" x2="22" y2="14" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round"/><rect x="4" y="9" width="12" height="7" rx="1" fill="rgba(255,255,255,.85)"/></svg>
+    </div>
+  </div>
+
+  <div class="screen">
+    <div class="hero">
+      <div class="logo-row">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+        </div>
+        <span class="logo-name">EduPortal</span>
+        <a href="login-mobile.html" class="back-btn">
+          <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Sair
+        </a>
+      </div>
+      <div class="hero-badge"><div class="hero-badge-dot"></div><span>Área do Aluno</span></div>
+      <div class="hero-title">Olá,<br/><em id="studentName">Giovanni Figueiredo</em></div>
+      <div class="hero-sub">1º Período · Turno Tarde/Noite · 2026</div>
+    </div>
+
+    <div class="summary-bar">
+      <div class="summary-card">
+        <div class="summary-item neutral">
+          <div class="val" id="sumVal1">—</div>
+          <div class="lbl" id="sumLbl1">Média Geral</div>
+        </div>
+        <div class="sep"></div>
+        <div class="summary-item ok">
+          <div class="val" id="sumVal2">—</div>
+          <div class="lbl" id="sumLbl2">Aprovado em</div>
+        </div>
+        <div class="sep"></div>
+        <div class="summary-item fail">
+          <div class="val" id="sumVal3">—</div>
+          <div class="lbl" id="sumLbl3">Recuperação</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-bar">
+      <button class="view-tab active" onclick="switchView('grades',this)">Notas</button>
+      <button class="view-tab" onclick="switchView('frequencia',this)">Frequência</button>
+    </div>
+
+    <div class="content-scroll" id="mainScroll">
+      <div id="gradesView">
+        <div class="section-title">Notas por Matéria</div>
+        <div id="subjectList"></div>
+      </div>
+      <div id="frequenciaView" style="display:none"></div>
+    </div>
+
+    <div class="home-indicator"><div class="home-bar"></div></div>
+  </div>
+</div>
+
+<script>
+  /* ================= CONFIG ================= */
+  const PASS_GRADE = 7;    // média mínima
+  const MIN_FREQ   = 75;   // frequência mínima exigida (%)
+
+  /* ================= DADOS ================= */
+  const defaultSubjects = [
+    { id: 1, name: 'Ideação',    teacher: 'Prof. Carlos Gustavo',  grades: [8.5, 7.0, 9.0, 8.0] },
+    { id: 2, name: 'Português',  teacher: 'Profa. Lúcia Ferreira', grades: [6.0, 5.5, 7.5, 6.5] },
+    { id: 3, name: 'História',   teacher: 'Prof. Roberto Alves',   grades: [9.0, 8.5, 9.5, 9.0] },
+    { id: 4, name: 'Biologia',   teacher: 'Profa. Sandra Lima',    grades: [5.0, 4.5, 6.0, 5.5] },
+    { id: 5, name: 'Física',     teacher: 'Prof. André Costa',     grades: [7.5, 8.0, 7.0, 8.5] },
+    { id: 6, name: 'Química',    teacher: 'Profa. Márcia Souza',   grades: [6.5, 7.0, 5.5, 6.0] }
+  ];
+
+  /* Total de aulas e presenças por disciplina (mock) */
+  const defaultAttendance = {
+    1: { total: 40, presencas: 38 },  // 95,0%  → Normal
+    2: { total: 40, presencas: 32 },  // 80,0%  → Atenção
+    3: { total: 36, presencas: 24 },  // 66,7%  → Risco
+    4: { total: 30, presencas: 30 },  // 100%   → Normal
+    5: { total: 34, presencas: 28 },  // 82,4%  → Atenção
+    6: { total: 0,  presencas: 0  }   // Sem registros
+  };
+
+  function getSubjects() {
+    try { const s = localStorage.getItem('eduportal_subjects'); return s ? JSON.parse(s) : defaultSubjects; }
+    catch (e) { return defaultSubjects; }
+  }
+  function getAttendance() {
+    try { const s = localStorage.getItem('eduportal_attendance'); return s ? JSON.parse(s) : defaultAttendance; }
+    catch (e) { return defaultAttendance; }
+  }
+  function avg(arr) {
+    const valid = arr.filter(n => n !== null && n !== undefined && n !== '');
+    if (!valid.length) return null;
+    return valid.reduce((a, b) => a + parseFloat(b), 0) / valid.length;
+  }
+
+  /* ================= FREQUÊNCIA · HELPERS ================= */
+  function freqPct(a) {
+    if (!a || !a.total) return null;
+    return (a.presencas / a.total) * 100;
+  }
+  function freqSit(p) {
+    if (p === null) return 'vazio';
+    if (p >= 85) return 'normal';
+    if (p >= MIN_FREQ) return 'alerta';
+    return 'risco';
+  }
+  const SIT_LABEL = { normal: 'Normal', alerta: 'Atenção', risco: 'Risco', vazio: 'Sem registros' };
+  const SIT_PILL  = { normal: 'approved', alerta: 'pending', risco: 'failed', vazio: 'empty' };
+  const SIT_BAR   = { normal: 'ok', alerta: 'warn', risco: 'risk', vazio: 'zero' };
+
+  const MESES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const DIAS  = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+  /* Gera as aulas (dias úteis) e marca as faltas de forma determinística */
+  function buildAulas(a) {
+    if (!a || !a.total) return [];
+    const faltas = Math.max(0, a.total - a.presencas);
+    const setFalta = new Set();
+
+    if (faltas > 0) {
+      const passo = Math.max(1, Math.floor(a.total / faltas));
+      let marcadas = 0;
+      for (let i = a.total - 1; i >= 0 && marcadas < faltas; i -= passo) { setFalta.add(i); marcadas++; }
+      let i = 0;
+      while (marcadas < faltas && i < a.total) { if (!setFalta.has(i)) { setFalta.add(i); marcadas++; } i++; }
+    }
+
+    const out = [];
+    const dt = new Date(2026, 1, 2); // 02/02/2026
+    for (let i = 0; i < a.total; i++) {
+      while (dt.getDay() === 0 || dt.getDay() === 6) dt.setDate(dt.getDate() + 1);
+      out.push({ data: new Date(dt), presente: !setFalta.has(i) });
+      dt.setDate(dt.getDate() + 1);
+    }
+    return out;
+  }
+
+  /* ================= RESUMO ================= */
+  function updateSummaryGrades() {
+    document.getElementById('sumLbl1').textContent = 'Média Geral';
+    document.getElementById('sumLbl2').textContent = 'Aprovado em';
+    document.getElementById('sumLbl3').textContent = 'Recuperação';
+  }
+  function updateSummaryFreq() {
+    const subjects = getSubjects();
+    const att = getAttendance();
+    let tot = 0, pres = 0;
+    subjects.forEach(s => { const a = att[s.id]; if (a && a.total > 0) { tot += a.total; pres += a.presencas; } });
+    const geral = tot ? (pres / tot) * 100 : null;
+
+    document.getElementById('sumVal1').textContent = geral === null ? '—' : Math.round(geral) + '%';
+    document.getElementById('sumVal2').textContent = pres;
+    document.getElementById('sumVal3').textContent = tot - pres;
+    document.getElementById('sumLbl1').textContent = 'Frequência Geral';
+    document.getElementById('sumLbl2').textContent = 'Presenças';
+    document.getElementById('sumLbl3').textContent = 'Faltas';
+  }
+
+  /* ================= NOTAS ================= */
+  function renderSubjects() {
+    const subjects = getSubjects();
+    const list = document.getElementById('subjectList');
+    list.innerHTML = '';
+
+    let totalAvg = 0, approvedCount = 0, failedCount = 0, count = 0;
+    const labels = ['1ª Período', '2ª Período', '3ª Período', '4ª Período'];
+
+    subjects.forEach((sub, i) => {
+      const average = avg(sub.grades);
+      const hasFull = sub.grades.every(g => g !== null && g !== '');
+      let status = 'pending', statusLabel = 'Em andamento';
+
+      if (hasFull && average !== null) {
+        if (average >= PASS_GRADE) { status = 'approved'; statusLabel = 'Aprovado'; approvedCount++; }
+        else { status = 'failed'; statusLabel = 'Recuperação'; failedCount++; }
+        totalAvg += average; count++;
+      }
+
+      const pct = average !== null ? Math.min(100, (average / 10) * 100) : 0;
+      const barClass = average !== null && average >= PASS_GRADE ? 'ok' : 'warn';
+
+      const gradesHTML = sub.grades.map((g, gi) => `
+        <div class="grade-box">
+          <div class="g-val">${g !== null && g !== '' ? parseFloat(g).toFixed(1) : '—'}</div>
+          <div class="g-lbl">${labels[gi]}</div>
+        </div>`).join('');
+
+      const card = document.createElement('div');
+      card.className = 'subject-card';
+      card.style.animationDelay = (i * 0.06) + 's';
+      card.innerHTML = `
+        <div class="subject-top">
+          <div>
+            <div class="subject-name">${sub.name}</div>
+            <div class="subject-teacher">${sub.teacher}</div>
+          </div>
+          <div class="status-pill ${status}">${statusLabel}</div>
+        </div>
+        <div class="grades-row">
+          ${gradesHTML}
+          <div class="grade-box highlight">
+            <div class="g-val">${average !== null ? average.toFixed(1) : '—'}</div>
+            <div class="g-lbl">Média</div>
+          </div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-bar ${barClass}" style="width:${pct}%"></div>
+        </div>`;
+      list.appendChild(card);
+    });
+
+    document.getElementById('sumVal1').textContent = count ? (totalAvg / count).toFixed(1) : '—';
+    document.getElementById('sumVal2').textContent = approvedCount + ' mat.';
+    document.getElementById('sumVal3').textContent = failedCount + ' mat.';
+  }
+
+  /* ================= LISTA DE FREQUÊNCIA ================= */
+  function renderFrequencia() {
+    const subjects = getSubjects();
+    const att = getAttendance();
+    const view = document.getElementById('frequenciaView');
+
+    let html = `<div class="section-title">Frequência por Matéria</div>`;
+
+    subjects.forEach((sub, i) => {
+      const a = att[sub.id] || { total: 0, presencas: 0 };
+      const p = freqPct(a);
+      const sit = freqSit(p);
+      const faltas = Math.max(0, a.total - a.presencas);
+      const pctTxt = p === null ? '—' : p.toFixed(1).replace('.', ',') + '%';
+
+      html += `
+        <div class="subject-card" style="animation-delay:${(i * 0.06)}s" onclick="openFreq(${sub.id})">
+          <div class="subject-top">
+            <div>
+              <div class="subject-name">${sub.name}</div>
+              <div class="subject-teacher">${sub.teacher}</div>
+            </div>
+            <div class="status-pill ${SIT_PILL[sit]}">${SIT_LABEL[sit]}</div>
+          </div>
+          <div class="grades-row">
+            <div class="grade-box"><div class="g-val">${a.total}</div><div class="g-lbl">Aulas</div></div>
+            <div class="grade-box"><div class="g-val">${a.presencas}</div><div class="g-lbl">Presenças</div></div>
+            <div class="grade-box"><div class="g-val">${faltas}</div><div class="g-lbl">Faltas</div></div>
+            <div class="grade-box highlight"><div class="g-val">${pctTxt}</div><div class="g-lbl">Frequência</div></div>
+          </div>
+          <div class="progress-wrap"><div class="progress-bar ${SIT_BAR[sit]}" style="width:${p === null ? 0 : p}%"></div></div>
+        </div>`;
+    });
+
+    view.innerHTML = html;
+    updateSummaryFreq();
+  }
+
+  /* ================= DETALHAMENTO DA DISCIPLINA ================= */
+  function openFreq(id) {
+    const subjects = getSubjects();
+    const att = getAttendance();
+    const sub = subjects.find(s => s.id === id);
+    if (!sub) return;
+
+    const a = att[id] || { total: 0, presencas: 0 };
+    const p = freqPct(a);
+    const sit = freqSit(p);
+    const faltas = Math.max(0, a.total - a.presencas);
+    const pctTxt = p === null ? '—' : p.toFixed(1).replace('.', ',') + '%';
+    const view = document.getElementById('frequenciaView');
+
+    let html = `
+      <button class="freq-back" onclick="renderFrequencia()">
+        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </button>
+
+      <div class="subject-card">
+        <div class="subject-top">
+          <div>
+            <div class="subject-name">${sub.name}</div>
+            <div class="subject-teacher">${sub.teacher}</div>
+          </div>
+          <div class="status-pill ${SIT_PILL[sit]}">${SIT_LABEL[sit]}</div>
+        </div>
+        <div class="grades-row">
+          <div class="grade-box"><div class="g-val">${a.total}</div><div class="g-lbl">Aulas</div></div>
+          <div class="grade-box"><div class="g-val">${a.presencas}</div><div class="g-lbl">Presenças</div></div>
+          <div class="grade-box"><div class="g-val">${faltas}</div><div class="g-lbl">Faltas</div></div>
+          <div class="grade-box highlight"><div class="g-val">${pctTxt}</div><div class="g-lbl">Frequência</div></div>
+        </div>
+        <div class="progress-wrap"><div class="progress-bar ${SIT_BAR[sit]}" style="width:${p === null ? 0 : p}%"></div></div>
+      </div>`;
+
+    if (sit === 'risco') {
+      html += `<div class="freq-alert risco">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Frequência abaixo do mínimo exigido (${MIN_FREQ}%).
+      </div>`;
+    } else if (sit === 'alerta') {
+      html += `<div class="freq-alert alerta">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Frequência próxima do limite mínimo de ${MIN_FREQ}%.
+      </div>`;
+    }
+
+    const aulas = buildAulas(a);
+
+    if (!aulas.length) {
+      html += `<div class="empty-state">
+        <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <h3>Nenhum registro de frequência disponível</h3>
+        <p>Esta disciplina ainda não possui aulas ou faltas registradas.</p>
+      </div>`;
+    } else {
+      html += `<div class="section-title">Detalhamento das Aulas</div>`;
+
+      const grupos = {};
+      aulas.forEach(x => {
+        const k = x.data.getFullYear() + '-' + String(x.data.getMonth()).padStart(2, '0');
+        (grupos[k] = grupos[k] || []).push(x);
+      });
+
+      html += Object.keys(grupos).sort().map(k => {
+        const [ano, mes] = k.split('-');
+        const itens = grupos[k].map(x => {
+          const dia = String(x.data.getDate()).padStart(2, '0');
+          const m = String(x.data.getMonth() + 1).padStart(2, '0');
+          return `<div class="aula-item">
+            <div class="aula-date"><b>${dia}/${m}</b><span>${DIAS[x.data.getDay()]}</span></div>
+            <div class="aula-info">
+              <b>Aula de ${sub.name}</b>
+              <span>${x.presente ? 'Presença confirmada' : 'Falta registrada'}</span>
+            </div>
+            <span class="aula-status ${x.presente ? 'presente' : 'falta'}">${x.presente ? 'Presente' : 'Falta'}</span>
+          </div>`;
+        }).join('');
+        return `<div class="aulas-group"><div class="aulas-month">${MESES[Number(mes)]} de ${ano}</div>${itens}</div>`;
+      }).join('');
+    }
+
+    view.innerHTML = html;
+    document.getElementById('mainScroll').scrollTop = 0;
+  }
+
+  /* ================= TROCA DE ABA ================= */
+  function switchView(view, btn) {
+    document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.getElementById('gradesView').style.display     = view === 'grades'     ? 'block' : 'none';
+    document.getElementById('frequenciaView').style.display = view === 'frequencia' ? 'block' : 'none';
+
+    if (view === 'grades') { updateSummaryGrades(); renderSubjects(); }
+    else { renderFrequencia(); }
+
+    document.getElementById('mainScroll').scrollTop = 0;
+  }
+
+  /* ================= RELÓGIO ================= */
+  function updateClock() {
+    const now = new Date();
+    document.querySelector('.status-time').textContent =
+      now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+  }
+
+  /* ================= INIT ================= */
+  updateClock(); setInterval(updateClock, 10000);
+  updateSummaryGrades();
+  renderSubjects();
+</script>
+</body>
+</html>

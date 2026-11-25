@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha frequência | Portal do Aluno</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/pages/frequencia.css">
+
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/pages/frequencia.js" defer></script>
+</head>
+
+<body>
+
+  <main class="page-content">
+
+
+    <section class="page-header">
+      <div class="header-title-group">
+        <div class="tags-group">
+          <span class="tag-label">MINHA TRAJETÓRIA</span>
+        </div>
+        <h1>Minha frequência</h1>
+        <p>Acompanhe suas presenças, faltas e o percentual exigido em cada disciplina.</p>
+      </div>
+      <div class="acoes-cabecalho">
+        <button type="button" class="botao-cabecalho secundario" id="botao-exportar">
+          <i class="fa-solid fa-download"></i> Exportar
+        </button>
+        <button type="button" class="botao-cabecalho primario" onclick="abrirJustificativa()">
+          <i class="fa-solid fa-file-circle-plus"></i> Justificar falta
+        </button>
+      </div>
+    </section>
+
+
+    <div class="aviso-sucesso" id="aviso-sucesso" role="status">
+      <i class="fa-solid fa-circle-check"></i>
+      <span id="aviso-texto"></span>
+    </div>
+
+
+    <section class="grade-resumo" aria-label="Resumo da minha frequência">
+      <div class="cartao-resumo azul">
+        <div class="topo-resumo">
+          <span>Frequência geral</span>
+          <div class="icone-resumo"><i class="fa-solid fa-chart-simple"></i></div>
+        </div>
+        <strong class="numero-resumo">87,8%</strong>
+        <small class="legenda-resumo">Mínimo exigido: 75%</small>
+      </div>
+
+      <div class="cartao-resumo verde">
+        <div class="topo-resumo">
+          <span>Presenças</span>
+          <div class="icone-resumo"><i class="fa-regular fa-circle-check"></i></div>
+        </div>
+        <strong class="numero-resumo">137</strong>
+        <small class="legenda-resumo"><span class="ponto-cor"></span> em 156 aulas registradas</small>
+      </div>
+
+      <div class="cartao-resumo amarelo">
+        <div class="topo-resumo">
+          <span>Atrasos</span>
+          <div class="icone-resumo"><i class="fa-regular fa-clock"></i></div>
+        </div>
+        <strong class="numero-resumo">05</strong>
+        <small class="legenda-resumo"><span class="ponto-cor"></span> 2 nos últimos 15 dias</small>
+      </div>
+
+      <div class="cartao-resumo vermelho">
+        <div class="topo-resumo">
+          <span><i class="fa-solid fa-triangle-exclamation"></i> Faltas</span>
+          <div class="icone-resumo"><i class="fa-regular fa-calendar-xmark"></i></div>
+        </div>
+        <strong class="numero-resumo">14</strong>
+        <small class="legenda-resumo"><span class="ponto-cor"></span> 3 sem justificativa</small>
+      </div>
+    </section>
+
+
+    <section class="barra-filtros" aria-label="Busca e filtros de frequência">
+      <div class="campo-busca">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" id="campo-busca" placeholder="Buscar por disciplina ou professor..."
+          oninput="filtrarFrequencia()">
+      </div>
+      <div class="controles-filtro">
+        <select id="filtro-disciplina" class="seletor-filtro" onchange="filtrarFrequencia()">
+          <option value="todas">Todas as Disciplinas</option>
+          <option value="Banco de Dados">Banco de Dados</option>
+          <option value="Cálculo Numérico">Cálculo Numérico</option>
+          <option value="Engenharia de Software">Engenharia de Software</option>
+          <option value="Redes de Computadores">Redes de Computadores</option>
+          <option value="Tutoria / Mentoria">Tutoria / Mentoria</option>
+        </select>
+        <select id="filtro-status" class="seletor-filtro" onchange="filtrarFrequencia()">
+          <option value="todos">Todos os status</option>
+          <option value="regular">Regular</option>
+          <option value="atencao">Atenção</option>
+          <option value="critico">Crítico</option>
+        </select>
+        <select id="filtro-ordem" class="seletor-filtro" onchange="filtrarFrequencia()">
+          <option value="padrao">Ordem padrão</option>
+          <option value="maior">Maior frequência</option>
+          <option value="menor">Menor frequência</option>
+          <option value="nome">Nome (A–Z)</option>
+        </select>
+        <button type="button" class="botao-limpar" onclick="limparFiltros()">
+          <i class="fa-solid fa-rotate-left"></i> Limpar filtros
+        </button>
+      </div>
+    </section>
+
+
+    <section class="cartao-tabela" aria-label="Minhas disciplinas">
+      <div class="topo-tabela">
+        <div class="titulo-tabela">
+          <h2>Minhas disciplinas</h2>
+          <small id="contador-tabela">5 disciplinas no semestre</small>
+        </div>
+        <small class="texto-apoio">Atualizado em 24/11/2026</small>
+      </div>
+
+      <div class="tabela-scroll">
+        <table class="tabela-frequencia">
+          <thead>
+            <tr>
+              <th>Disciplina</th>
+              <th>Professor</th>
+              <th>Carga</th>
+              <th>Presenças</th>
+              <th>Faltas</th>
+              <th>Atrasos</th>
+              <th>Frequência</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="corpo-tabela">
+            <tr class="linha-frequencia" data-disciplina="Banco de Dados" data-status="regular" data-frequencia="94"
+              data-carga="36">
+              <td>
+                <div class="celula-disciplina">
+                  <div class="avatar-disciplina">BD</div>
+                  <div>
+                    <strong class="nome-disciplina">Banco de Dados</strong>
+                    <small class="codigo-disciplina">BD401</small>
+                  </div>
+                </div>
+              </td>
+              <td>Profa. Renata Lima</td>
+              <td><span class="tag-turma">36h</span></td>
+              <td>34</td>
+              <td>2</td>
+              <td>0</td>
+              <td>
+                <div class="celula-frequencia">
+                  <div class="barra-frequencia"><span class="preenchimento" style="width: 94%"></span></div>
+                  <span class="valor-frequencia">94%</span>
+                </div>
+              </td>
+              <td><span class="etiqueta-status verde">Regular</span></td>
+              <td><button type="button" class="botao-detalhes">Detalhes <i class="fa-solid fa-arrow-right"></i></button>
+              </td>
+            </tr>
+
+            <tr class="linha-frequencia" data-disciplina="Engenharia de Software" data-status="regular"
+              data-frequencia="93" data-carga="40">
+              <td>
+                <div class="celula-disciplina">
+                  <div class="avatar-disciplina">ES</div>
+                  <div>
+                    <strong class="nome-disciplina">Engenharia de Software</strong>
+                    <small class="codigo-disciplina">ES410</small>
+                  </div>
+                </div>
+              </td>
+              <td>Prof. Marcos Tavares</td>
+              <td><span class="tag-turma">40h</span></td>
+              <td>37</td>
+              <td>2</td>
+              <td>1</td>
+              <td>
+                <div class="celula-frequencia">
+                  <div class="barra-frequencia"><span class="preenchimento" style="width: 93%"></span></div>
+                  <span class="valor-frequencia">93%</span>
+                </div>
+              </td>
+              <td><span class="etiqueta-status verde">Regular</span></td>
+              <td><button type="button" class="botao-detalhes">Detalhes <i class="fa-solid fa-arrow-right"></i></button>
+              </td>
+            </tr>
+
+            <tr class="linha-frequencia" data-disciplina="Redes de Computadores" data-status="atencao"
+              data-frequencia="84" data-carga="32">
+              <td>
+                <div class="celula-disciplina">
+                  <div class="avatar-disciplina">RC</div>
+                  <div>
+                    <strong class="nome-disciplina">Redes de Computadores</strong>
+                    <small class="codigo-disciplina">RC205</small>
+                  </div>
+                </div>
+              </td>
+              <td>Prof. Diego Alencar</td>
+              <td><span class="tag-turma">32h</span></td>
+              <td>27</td>
+              <td>4</td>
+              <td>1</td>
+              <td>
+                <div class="celula-frequencia">
+                  <div class="barra-frequencia amarelo"><span class="preenchimento" style="width: 84%"></span></div>
+                  <span class="valor-frequencia">84%</span>
+                </div>
+              </td>
+              <td><span class="etiqueta-status amarelo">Atenção</span></td>
+              <td><button type="button" class="botao-detalhes">Detalhes <i class="fa-solid fa-arrow-right"></i></button>
+              </td>
+            </tr>
+
+            <tr class="linha-frequencia" data-disciplina="Cálculo Numérico" data-status="critico" data-frequencia="70"
+              data-carga="30">
+              <td>
+                <div class="celula-disciplina">
+                  <div class="avatar-disciplina">CN</div>
+                  <div>
+                    <strong class="nome-disciplina">Cálculo Numérico</strong>
+                    <small class="codigo-disciplina">CM302</small>
+                  </div>
+                </div>
+              </td>
+              <td>Profa. Helena Ribeiro</td>
+              <td><span class="tag-turma">30h</span></td>
+              <td>21</td>
+              <td>6</td>
+              <td>3</td>
+              <td>
+                <div class="celula-frequencia">
+                  <div class="barra-frequencia vermelho"><span class="preenchimento" style="width: 70%"></span></div>
+                  <span class="valor-frequencia">70%</span>
+                </div>
+              </td>
+              <td><span class="etiqueta-status vermelho">Crítico</span></td>
+              <td><button type="button" class="botao-detalhes">Detalhes <i class="fa-solid fa-arrow-right"></i></button>
+              </td>
+            </tr>
+
+            <tr class="linha-frequencia" data-disciplina="Tutoria / Mentoria" data-status="regular"
+              data-frequencia="100" data-carga="18">
+              <td>
+                <div class="celula-disciplina">
+                  <div class="avatar-disciplina">TM</div>
+                  <div>
+                    <strong class="nome-disciplina">Tutoria / Mentoria</strong>
+                    <small class="codigo-disciplina">TM100</small>
+                  </div>
+                </div>
+              </td>
+              <td>Profa. Cláudia Menezes</td>
+              <td><span class="tag-turma">18h</span></td>
+              <td>18</td>
+              <td>0</td>
+              <td>0</td>
+              <td>
+                <div class="celula-frequencia">
+                  <div class="barra-frequencia"><span class="preenchimento" style="width: 100%"></span></div>
+                  <span class="valor-frequencia">100%</span>
+                </div>
+              </td>
+              <td><span class="etiqueta-status verde">Regular</span></td>
+              <td><button type="button" class="botao-detalhes">Detalhes <i class="fa-solid fa-arrow-right"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rodape-tabela">
+        <span id="contador-rodape">Mostrando 5 de 5 disciplinas</span>
+        <small>Frequência calculada sobre 156 aulas registradas</small>
+      </div>
+    </section>
+
+
+    <section class="cartao-tabela" aria-label="Histórico de justificativas">
+      <div class="topo-tabela">
+        <div class="titulo-tabela">
+          <h2>Histórico de justificativas</h2>
+          <small id="contador-justificativas">3 justificativas enviadas · 1 em análise</small>
+        </div>
+        <small class="texto-apoio">Prazo de análise: até 5 dias úteis</small>
+      </div>
+
+      <div class="lista-justificativas" id="lista-justificativas">
+        <div class="item-justificativa">
+          <div class="icone-justificativa"><i class="fa-solid fa-hourglass-half"></i></div>
+          <div class="dados-justificativa">
+            <strong>Cálculo Numérico</strong>
+            <small>Falta em 17/11/2026 · Enviada em 18/11/2026 · Protocolo 2026-1194</small>
+          </div>
+          <span class="etiqueta-status amarelo">Em análise</span>
+        </div>
+
+        <div class="item-justificativa">
+          <div class="icone-justificativa"><i class="fa-solid fa-file-circle-check"></i></div>
+          <div class="dados-justificativa">
+            <strong>Redes de Computadores</strong>
+            <small>Falta em 14/11/2026 · Enviada em 14/11/2026 · Protocolo 2026-1181</small>
+          </div>
+          <span class="etiqueta-status verde">Deferida</span>
+        </div>
+
+        <div class="item-justificativa">
+          <div class="icone-justificativa"><i class="fa-solid fa-file-circle-xmark"></i></div>
+          <div class="dados-justificativa">
+            <strong>Cálculo Numérico</strong>
+            <small>Falta em 10/11/2026 · Enviada em 11/11/2026 · Protocolo 2026-1163</small>
+          </div>
+          <span class="etiqueta-status vermelho">Indeferida</span>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="grade-apoio">
+
+      <div class="cartao-bloco">
+        <div class="topo-bloco">
+          <h3>Frequência por disciplina</h3>
+          <small>Semestre 2026.2</small>
+        </div>
+
+        <div class="linha-barra">
+          <span class="rotulo-barra">Banco de Dados</span>
+          <div class="trilha">
+            <div class="trilha-preenchida" style="width: 94%"></div>
+          </div>
+          <span class="valor-barra">94%</span>
+        </div>
+        <div class="linha-barra">
+          <span class="rotulo-barra">Engenharia de Software</span>
+          <div class="trilha">
+            <div class="trilha-preenchida" style="width: 93%"></div>
+          </div>
+          <span class="valor-barra">93%</span>
+        </div>
+        <div class="linha-barra">
+          <span class="rotulo-barra">Redes de Computadores</span>
+          <div class="trilha">
+            <div class="trilha-preenchida amarelo" style="width: 84%"></div>
+          </div>
+          <span class="valor-barra">84%</span>
+        </div>
+        <div class="linha-barra">
+          <span class="rotulo-barra">Cálculo Numérico</span>
+          <div class="trilha">
+            <div class="trilha-preenchida vermelho" style="width: 70%"></div>
+          </div>
+          <span class="valor-barra">70%</span>
+        </div>
+        <div class="linha-barra">
+          <span class="rotulo-barra">Tutoria / Mentoria</span>
+          <div class="trilha">
+            <div class="trilha-preenchida" style="width: 100%"></div>
+          </div>
+          <span class="valor-barra">100%</span>
+        </div>
+      </div>
+
+      <aside class="cartao-alertas vermelho">
+        <div class="topo-bloco">
+          <h3><i class="fa-solid fa-triangle-exclamation"></i> Pendências</h3>
+          <span class="etiqueta-status" id="badge-pendencias">3 pendentes</span>
+        </div>
+
+        <div class="item-alerta">
+          <span class="ponto-cor"></span>
+          <div>
+            <strong>Cálculo Numérico</strong>
+            <p>70% de frequência, abaixo do mínimo de 75%.</p>
+            <small>Atualizado em 17/11/2026</small>
+          </div>
+        </div>
+
+        <div class="item-alerta">
+          <span class="ponto-cor"></span>
+          <div>
+            <strong>Redes de Computadores</strong>
+            <p>2 faltas sem justificativa. Envie até 30/11.</p>
+            <small>Atualizado em 14/11/2026</small>
+          </div>
+        </div>
+
+        <div class="item-alerta">
+          <span class="ponto-cor"></span>
+          <div>
+            <strong>Cálculo Numérico</strong>
+            <p>Resta 1 falta até o limite da disciplina.</p>
+            <small>Atualizado em 10/11/2026</small>
+          </div>
+        </div>
+
+        <button type="button" class="botao-justificar" onclick="abrirJustificativa()">
+          <i class="fa-solid fa-file-circle-plus"></i> Justificar falta
+        </button>
+      </aside>
+
+    </section>
+  </main>
+
+
+  <dialog id="modal-justificativa" class="modal-detalhes" onclick="fecharAoClicarFora(event)">
+    <div class="conteudo-modal">
+
+      <header class="cabecalho-modal">
+        <div class="identificacao-modal">
+          <span class="etiqueta-status azul">JUSTIFICATIVA</span>
+          <span class="codigo-atividade" id="protocolo-justificativa">• Protocolo 2026-1187</span>
+        </div>
+        <button type="button" class="botao-fechar-modal" onclick="fecharJustificativa()"
+          aria-label="Fechar justificativa">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </header>
+
+      <div class="corpo-modal">
+        <h2>Justificar falta</h2>
+
+        <div class="campo-form">
+          <label for="just-disciplina">Disciplina</label>
+          <select id="just-disciplina" class="seletor-filtro">
+            <option value="Cálculo Numérico">Cálculo Numérico · 6 faltas</option>
+            <option value="Redes de Computadores">Redes de Computadores · 4 faltas</option>
+            <option value="Banco de Dados">Banco de Dados · 2 faltas</option>
+          </select>
+        </div>
+
+        <div class="campo-form">
+          <label for="just-data">Data da falta</label>
+          <input type="date" id="just-data" class="seletor-filtro" value="2026-11-17">
+        </div>
+
+        <div class="campo-form">
+          <label for="just-motivo">Motivo</label>
+          <textarea id="just-motivo" rows="3" placeholder="Descreva o motivo da ausência..."></textarea>
+        </div>
+
+        <label class="area-envio" for="just-arquivo">
+          <input type="file" id="just-arquivo" hidden accept=".pdf,.jpg,.jpeg,.png">
+          <div class="icone-envio"><i class="fa-regular fa-file-arrow-up"></i></div>
+          <strong>Anexar atestado ou comprovante</strong>
+          <small>PDF, JPG ou PNG até 5 MB</small>
+          <span class="arquivo-selecionado" id="arquivo-selecionado"></span>
+        </label>
+      </div>
+
+      <footer class="rodape-modal">
+        <div class="resumo-chamada">
+          <span>Faltas pendentes: <strong id="just-pendentes">3</strong></span>
+        </div>
+        <div class="acoes-modal">
+          <button type="button" class="botao-cancelar" onclick="fecharJustificativa()">Cancelar</button>
+          <button type="button" class="botao-enviar" onclick="enviarJustificativa()">
+            <i class="fa-regular fa-paper-plane"></i> Enviar justificativa
+          </button>
+        </div>
+      </footer>
+
+    </div>
+  </dialog>
+</body>
+
+</html>

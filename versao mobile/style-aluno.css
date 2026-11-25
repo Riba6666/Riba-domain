@@ -173,3 +173,76 @@
       align-items: center; justify-content: center; background: var(--bg);
     }
     .home-bar { width: 120px; height: 5px; background: rgba(0,0,0,0.2); border-radius: 3px; }
+
+    /* ================= TABS (Notas / Frequência) ================= */
+.tab-bar {
+  flex-shrink: 0;
+  padding: 12px 28px 0;
+  display: flex;
+  gap: 8px;
+}
+.view-tab {
+  flex: 1; padding: 8px; border: none; border-radius: 10px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 600;
+  background: transparent; color: var(--text-mid); transition: all 0.25s;
+}
+.view-tab.active { background: var(--primary); color: var(--accent); }
+
+/* ================= FREQUÊNCIA ================= */
+.status-pill.empty { background: rgba(90,90,122,0.1); color: var(--text-mid); }
+
+.progress-bar.risk { background: linear-gradient(90deg, #ef4444, #b91c1c); }
+.progress-bar.zero { background: #d9d5cf; }
+
+.freq-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none; cursor: pointer; padding: 0;
+  font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600;
+  color: var(--primary); margin-bottom: 12px;
+}
+.freq-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; }
+
+.freq-alert {
+  display: flex; align-items: center; gap: 8px;
+  border-radius: 12px; padding: 10px 14px; margin-bottom: 12px;
+  font-size: 0.78rem; font-weight: 500; line-height: 1.35;
+}
+.freq-alert svg { width: 16px; height: 16px; stroke: currentColor; fill: none; flex-shrink: 0; }
+.freq-alert.alerta { background: rgba(245,158,11,0.1); color: #b45309; }
+.freq-alert.risco  { background: rgba(239,68,68,0.1);  color: var(--failed); }
+.freq-alert.ok     { background: rgba(34,197,94,0.1);  color: var(--approved); }
+
+.aulas-group { margin-bottom: 16px; }
+.aulas-month {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--text-mid); margin-bottom: 8px;
+}
+.aula-item {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border: 1.5px solid #eee; border-radius: 12px;
+  padding: 10px 14px; margin-bottom: 8px;
+  animation: cardIn 0.4s cubic-bezier(0.34,1.2,0.64,1) both;
+}
+.aula-date { width: 44px; flex-shrink: 0; text-align: center; }
+.aula-date b { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-dark); }
+.aula-date span { font-size: 0.6rem; color: var(--text-mid); text-transform: uppercase; }
+.aula-info { flex: 1; min-width: 0; }
+.aula-info b { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-dark); }
+.aula-info span { font-size: 0.7rem; color: var(--text-mid); font-weight: 300; }
+.aula-status {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 100px; flex-shrink: 0;
+}
+.aula-status.presente { background: rgba(34,197,94,0.1); color: var(--approved); }
+.aula-status.falta    { background: rgba(239,68,68,0.1);  color: var(--failed); }
+
+.empty-state {
+  text-align: center; padding: 36px 20px;
+  background: #fff; border: 1.5px dashed #ddd; border-radius: 14px;
+}
+.empty-state svg { width: 38px; height: 38px; stroke: #c0bdb8; fill: none; margin-bottom: 10px; }
+.empty-state h3 {
+  font-family: 'DM Serif Display', serif; font-size: 0.98rem;
+  color: var(--text-dark); margin-bottom: 6px;
+}
+.empty-state p { font-size: 0.78rem; color: var(--text-mid); font-weight: 300; line-height: 1.5; }
